@@ -7,8 +7,8 @@ public class case1 {
 	public static void main(String[] args) {
 		
 		//-----------------Variaveis-------------------------
-		String nome, sSaldo, sOp, sSaque;
-		double salario, saldo, atual, saque, emprestimo;
+		String nome, sSaldo, sOp, sSaque,  sSN, sConta = null;
+		double saldo, saque, juros;
 		int qtdSaque = 0;
 		//-----------------Variaveis-------------------------
 		
@@ -39,6 +39,16 @@ public class case1 {
 					saque=Float.parseFloat(sSaque);
 					if (saque > saldo) {
 						JOptionPane.showMessageDialog(null,"Saldo insuficiente para retirada");
+						sSN = JOptionPane.showInputDialog("Voce possui um emprestimo preaprovado com juros de 11%, deseja contratá-lo? (s/n)");
+						if(sSN.equals("s")) {
+							sSaque = JOptionPane.showInputDialog("Qual valor pretende emprestar? ");
+							saque=Float.parseFloat(sSaque);
+							juros = saque*0.11;
+							saldo = saldo+saque;
+							JOptionPane.showMessageDialog(null,"Seu saldo atual é "+saldo+" e você terá um juros de "+juros);
+							break;
+						}
+						
 					}else
 						saldo = saldo-saque;
 						qtdSaque++;
@@ -59,11 +69,15 @@ public class case1 {
 				
 				sSaque = JOptionPane.showInputDialog("Qual o valor à Transferir? ");
 				saque=Float.parseFloat(sSaque);
+				
 				if (saque > saldo) {
 					JOptionPane.showMessageDialog(null,"Saldo insuficiente para tranferencia");
 				}else
+					sConta = JOptionPane.showInputDialog("Digite a conta que deseja transferir ");
 					
 					saldo = saldo-saque;
+					
+					JOptionPane.showMessageDialog(null,"Transferencia realizada com sucesso para conta "+sConta+ "seu saldo atua é de "+saldo);
 				break;
 				//****************************************SAIR*****************************************************	
 			default:
@@ -72,20 +86,9 @@ public class case1 {
 			
 			}
 			sOp = JOptionPane.showInputDialog(
-					nome + "Selecione a Opção desejada \n1 - Extrado \n2 - sacar \n3 - depoistar \n4 - sair");
+					nome + "Selecione a Opção desejada \n1 - Extrado \n2 - Saque \n3 - Deposito \n4 - Transferencia \n5 - Sair");
 		}
-		/*
-		 * if(saque<saldo) { atual = saldo-saque; JOptionPane.showMessageDialog(null,
-		 * "Saque realizado com sucesso, seu saldo atual é: "+ atual); } else {
-		 * JOptionPane.showMessageDialog(null, "Saldo insuficiente para operação");
-		 * emprestimo = salario*0.05; JOptionPane.showMessageDialog(null,
-		 * "Você possui um empréstimo aprovado no valor de R$"+emprestimo); sn =
-		 * JOptionPane.showInputDialog("Deseja contratar o emprestimo? S/N");
-		 * if(sn.equals("S")) { saldo = saldo+emprestimo; atual = saldo-saque;
-		 * JOptionPane.showMessageDialog(null,
-		 * "Saque realizado com sucesso, seu saldo atual é: "+ atual); }else {
-		 * JOptionPane.showMessageDialog(null, "Operação finalizada"); }
-		 */
+	
 	}
 
 }
